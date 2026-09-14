@@ -8,7 +8,7 @@ A notebook-based study of implicit user-article interactions for IBM Watson Stud
 - `data/user-item-interactions.csv` relative to the notebook working directory: interaction data.
 - `project_tests.py` and `top_*.p`, where supplied: course helpers and expected answers, not disposable temporary models.
 
-A closely related version exists in `recommendation-system`. This is a candidate for the canonical IBM project after execution and evaluation issues are addressed. The differing checkpoint is retained.
+A closely related version exists in `recommendation-system`. This is now the canonical IBM project; the duplicate repository is archived. The differing checkpoint is retained.
 
 ## Setup
 
@@ -40,7 +40,7 @@ Reconstruction metrics on the matrix used for fitting are in-sample diagnostics,
 
 ## Next development steps
 
-- Resolve the execution issues in [review notes](docs/REVIEW.md).
+- See [review notes](docs/REVIEW.md) for historical findings; current runtime verification is below.
 - Extract pure recommendation functions and test unknown users, empty histories, and duplicate recommendations.
 - Lock dependencies after an end-to-end run and publish a small demo with reproducible results.
 
@@ -51,3 +51,9 @@ Based on Udacity Data Scientist Nanodegree material and IBM Watson Studio intera
 ## Recorded verification
 
 On 2026-09-13, 55 analysis code cells completed in order in the audit environment without an exception. HTML export was excluded; no held-out quality claim follows from this execution. See [environment and validation scope](docs/REVIEW.md).
+
+## Runtime repair — 2026-09-14
+
+All 55 analysis code cells completed sequentially on the supplied data, with no exception or course-helper failure messages. HTML export was tested separately and succeeded. The export cell now uses the notebook kernel’s Python interpreter (`python -m nbconvert`); `nbconvert` is explicit in requirements.
+
+Tested with Python 3.12, NumPy 2.5.3, pandas 2.3.3, scikit-learn 1.9.1, IPython and nbconvert 7.17.1. Plots used Agg. This is runtime verification, not held-out recommendation quality. Run from the repository directory. A full dependency lock and held-out ranking evaluation remain future work.
