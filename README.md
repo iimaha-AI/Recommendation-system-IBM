@@ -1,4 +1,81 @@
-# IBM Article Recommendation Study
+# IBM Article Recommendation System
+
+Explore how to recommend IBM Watson Studio articles from implicit reading interactions. This notebook implements popularity ranking, user-user collaborative filtering, title-based similarity, and matrix factorization, showing how recommendation strategies use different signals.
+
+**Focus:** Recommendation Systems · Exploratory Analysis · NLP · Matrix Factorization  
+**Format:** Educational notebook with bundled data and course checks.
+
+[Notebook](Recommendations_with_IBM.ipynb) · [Results](#results--validation) · [Run locally](#how-to-run--known-limitations)
+
+## Features
+
+| Approach | Implementation |
+| --- | --- |
+| Popularity | Rank articles by interaction counts |
+| Collaborative filtering | Build a binary user-item matrix, compare users with cosine similarity, and recommend unseen articles |
+| Content similarity | TF-IDF of article titles, SVD projection, and KMeans clustering |
+| Matrix factorization | TruncatedSVD of the interaction matrix and article similarity exploration |
+
+Exploratory analysis covers missing user identifiers, reading activity, and article popularity. The notebook includes assertions and course helper checks.
+
+## Tech stack
+
+Python · pandas · NumPy · scikit-learn · Matplotlib · Jupyter · nbconvert
+
+## Workflow
+
+```mermaid
+flowchart LR
+    A[User-article interaction CSV] --> B[Clean identifiers and explore activity]
+    B --> C[Popularity ranking]
+    B --> D[Binary user-item matrix]
+    B --> E[Article titles]
+    D --> F[User-user recommendations]
+    D --> G[SVD article similarity]
+    E --> H[TF-IDF and title clusters]
+    C --> I[Inspect recommendations and checks]
+    F --> I
+    G --> I
+    H --> I
+```
+
+## Results & validation
+
+**Recorded on 2026-09-14:** all 55 analysis code cells completed sequentially on the supplied data, with no exceptions or course-helper failure messages. HTML export was checked separately and succeeded. This is the repository's existing runtime record; it was not rerun for this documentation update.
+
+- The notebook asserts a **5,149-user × 714-article** interaction matrix.
+- Recommendations and plots can be inspected in the [notebook](Recommendations_with_IBM.ipynb); a [saved HTML export](Recommendations_with_IBM.html) is also included.
+- Reconstruction metrics use the matrix fitted by the model. They are in-sample diagnostics, not held-out ranking performance.
+
+No measured lift over a popularity baseline or production engagement improvement is claimed.
+
+## Visual preview
+
+The notebook contains activity distributions and clustering plots. Standalone screenshots are not yet included:
+
+| Planned image | What it should show |
+| --- | --- |
+| `docs/screenshots/article-activity.png` | Actual user/article activity distributions from the notebook |
+| `docs/screenshots/recommendation-example.png` | A real recommendation example with its method and input |
+
+<!-- Populate only with actual notebook output; include the run date in captions.
+![Article activity distributions](docs/screenshots/article-activity.png)
+![Recommendation example](docs/screenshots/recommendation-example.png)
+-->
+
+
+## Contribution & attribution
+
+The implementation described above is visible in the repository. A personal contribution breakdown is not documented; individual roles are therefore left unspecified. Existing attribution and licensing notes are preserved below.
+
+## How to run & known limitations
+
+Expand the original documentation below for the complete setup commands, limitations, provenance notes, and recorded verification. Its content has been preserved; the presentation update above does not introduce new runtime or benchmark claims.
+
+<details>
+<summary>Setup, limitations, and existing technical documentation</summary>
+
+## IBM Article Recommendation Study
 
 A notebook-based study of implicit user-article interactions for IBM Watson Studio, exploring popularity, user-user collaborative filtering, content similarity, and matrix factorization. This is an educational analysis, not a deployed service.
 
@@ -57,3 +134,5 @@ On 2026-09-13, 55 analysis code cells completed in order in the audit environmen
 All 55 analysis code cells completed sequentially on the supplied data, with no exception or course-helper failure messages. HTML export was tested separately and succeeded. The export cell now uses the notebook kernel’s Python interpreter (`python -m nbconvert`); `nbconvert` is explicit in requirements.
 
 Tested with Python 3.12, NumPy 2.5.3, pandas 2.3.3, scikit-learn 1.9.1, IPython and nbconvert 7.17.1. Plots used Agg. This is runtime verification, not held-out recommendation quality. Run from the repository directory. A full dependency lock and held-out ranking evaluation remain future work.
+
+</details>
